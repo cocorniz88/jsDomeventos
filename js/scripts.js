@@ -1,5 +1,5 @@
 // para seleccionara contenido hay 3 formas: 
-//queryselector: te retorna ninguno o hasta algun selector que estes escribiendo, son similiares a CSS
+//queryselector: te retorna ninguno o hasta un slo selector que estes escribiendo que seria el primero que encuentres, son similiares a CSS
 //vamos a seleccionar el texto de h2 de contacto.html
 const heading = document.querySelector('.header__texto h2') // document hace referencia a todo el texto de html es una funcion, todos los query inician con DOCUMENT, . por que es un objeto y el queryselector que nos va a retornar 0 o 1 elemento. dentro del parentesis va el selector de CSS y va entre comillas la clase padre y el elemento html, cuando se comete un erros en js como poner una clase que no exista en parentesis va a salir null y lo mas posible es que este mal escrito el selector.
 console.log(heading);// nos aparece en la consola seleccionado
@@ -20,3 +20,25 @@ console.log(enlaces);
 
 const heading2 = document.getElementById('heading'); // no hay necesidad de poner # por que ya se esta especificando
 console.log(heading);
+
+// como generar codigo HTML con JS
+// generar un nuevo enlace
+const nuevoEnlace = document.createElement('A') //Js recomienda utilizar mayusculas esto es lo mismo que crear <h1> en html, se puede crear P A DIv en mayusculas mejor
+
+// agregar el href al enlace que estamos creando
+nuevoEnlace.href = 'nuevo-enlace.html';
+
+//agregar el texto
+nuevoEnlace.textContent = 'Un Nuevo Enlace';
+
+//agregar la clase
+nuevoEnlace.classList.add('navegacio__enlace');
+
+//Agregarlo al documento, una vez que creaste el enlace anterior con todos sus atributos se agrega al documento.
+const navegacion = document.querySelector('.navegacion');
+navegacion.appendChild(nuevoEnlace) //appendChild esta es la funcion que nos permite agregar un elemento e insertarla en otro lugar, estamos diciendo agrega como hijo de esta navegacion el nuevo enlace
+
+console.log(nuevoEnlace);
+
+
+//EVENTOS JS
