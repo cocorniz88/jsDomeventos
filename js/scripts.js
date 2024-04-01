@@ -42,3 +42,27 @@ console.log(nuevoEnlace);
 
 
 //EVENTOS JS
+//puede ser un click darle scroll, escribir todo eso son tipos de eventos
+
+console.log(1);
+
+
+window.addEventListener('load', function() {//addevenlistener es un metodo para registrar los eventos, cuando ocurra el evento el codigo siguiente es el que se ejecuta, el load lo que hace es esperar hasta que el window este lista, cuando el evento ocurrar va a suceder el function a esto se le conoce como CALL BACK 
+    console.log(2); // load espera a que JS y los archivos que dependen del HTML esten listos 
+}) 
+
+window.onload = function(){ // esto es lo mismo del codigo anterior. se utiliza mas el primero
+    console.log(3);
+}
+
+document.addEventListener('DOMContentLoaded', function() { // PREGUNTA DE ENTREVISTA La diferencia entre load y DOMContentLoaded en el caso de load espera a que se descargue todo el html (css js img videos etc) en el DOM solo espera que se descargue el HTML no le importa el css y las imagenes, se utiliza mas el DOM por ser mas rapido
+    console.log(4);
+});
+
+console.log(5);
+
+window.onscroll = function(){ // una funcion que se ejecuta mientras das scroll
+    console.log('scrolling...')
+}
+
+//SELECCIONAR ELEMENTOS Y ASOCIARLES UN EVENTO
