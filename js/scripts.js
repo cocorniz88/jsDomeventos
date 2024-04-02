@@ -61,8 +61,19 @@ document.addEventListener('DOMContentLoaded', function() { // PREGUNTA DE ENTREV
 
 console.log(5);
 
-window.onscroll = function(){ // una funcion que se ejecuta mientras das scroll
-    console.log('scrolling...')
+window.onscroll = function(e){ // una funcion que se ejecuta mientras das scroll, le ponemos e por que es un evento, cada que demos scroll nos registra este evento, se puede poner e event evt evento ect
+    console.log(e);
 }
 
 //SELECCIONAR ELEMENTOS Y ASOCIARLES UN EVENTO
+const btnEnviar = document.querySelector('.boton--primario');// una vez que creas una variable con queryselector tienes a disposicion el metodo addEventListener
+btnEnviar.addEventListener('click', function(evento){// le estamos registrando un evento al boton de enviar, se pone click para accionar el evento cuando se presione el boton, vamos a ejecutar la siguiente funcion
+    console.log(evento);
+    evento.preventDefault(); // este es para validar formulario, valida que todos los campos esten llenos y es muy importante va en casi todos los formularios.lo que hace es prevenir la accion por default osea enviarla
+
+
+
+
+
+    console.log('enviando formulario');
+});
