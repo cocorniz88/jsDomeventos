@@ -106,13 +106,13 @@ formulario.addEventListener('submit', function(e) { // registramos el evento, su
     const { nombre, email, mensaje } = datos; //destructuring del objeto datos
 
     if (nombre === '' || email === '' || mensaje === '') { // decimos si el nombre es un string vacio entonces imprimenos el nombre esta vacio...
-        mostrarError('Todos los campos son obligatios') //estamos creando una funcion la cual se crea abajo 
+        mostrarAlerta('Todos los campos son obligatios', true) //estamos creando una funcion la cual se crea abajo 
 
         return; // corta la ejecucion del codigo para que no se imprima el console.log de abajo
     }
 
     //Crear la otra alerta de enviar correctamente
-    mostrarMensaje('Mensaje enviado correctamente');
+    mostrarAlerta('Mensaje enviado correctamente');
 });
 
 function leerTexto(e) { //Creamo esta funcion para agrupar todo y no escribir tanto cosigo, e se debe poner automaticamente cuando se agrega el addEventListener
@@ -122,32 +122,19 @@ function leerTexto(e) { //Creamo esta funcion para agrupar todo y no escribir ta
     //console.log(datos);
 }
 
-// Muestra una alerta que se envio correctamente
-
-function mostrarMensaje(mensaje){
-    const alerta = document.createElement('P');
+function mostrarAlerta(mensaje, error = null) { //el error se cumple por que le pusimos un true arriba de lo contrario por defecto sera null y se aplicara el exito de envio del mensaje
+    const alerta = document.createElement('P');//estamos creando un parrafo, que va a mostrar el mensaje y se le agrega una clase para darle estilo en css
     alerta.textContent = mensaje;
-    alerta.classList.add('correcto');
 
-    formulario.appendChild( alerta );
+    if(error) {
+        alerta.classList.add('error');
+    } else {
+        alerta.classList.add('correcto');
+    }
 
-    //Desaparezca despues de 4 segundos
+    formulario.appendChild( alerta );// esto es para que lo agregue al formulario de html
+
     setTimeout(() => {
-        alerta.remove();
+        alerta.remove();//el mensaje de alerta debe desaparecer .remove es un metodo para poder eliminar un elemento html
     }, 4000);
 }
-
-//Muestra un error en pantalla 
-function mostrarError(mensaje) {
-    const error = document.createElement('P'); //estamos creando un parrafo, que va a mostrar el mensaje y se le agrega una clase para darle estilo en css
-    error.textContent = mensaje;
-    error.classList.add('error');
-
-    formulario.appendChild( error ); // esto es para que lo agregue al formulario de html
-
-    //Desaparezca el mensaje despues de 4 segundos
-    setTimeout(() => {
-        error.remove(); //el error debe desaparecer .remove es un metodo para poder eliminar un elemento html
-    }, 4000);
-}
- 
