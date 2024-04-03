@@ -1,4 +1,5 @@
 // para seleccionara contenido hay 3 formas: 
+
 //queryselector: te retorna ninguno o hasta un slo selector que estes escribiendo que seria el primero que encuentres, son similiares a CSS
 //vamos a seleccionar el texto de h2 de contacto.html
 const heading = document.querySelector('.header__texto h2') // document hace referencia a todo el texto de html es una funcion, todos los query inician con DOCUMENT, . por que es un objeto y el queryselector que nos va a retornar 0 o 1 elemento. dentro del parentesis va el selector de CSS y va entre comillas la clase padre y el elemento html, cuando se comete un erros en js como poner una clase que no exista en parentesis va a salir null y lo mas posible es que este mal escrito el selector.
@@ -62,18 +63,48 @@ document.addEventListener('DOMContentLoaded', function() { // PREGUNTA DE ENTREV
 console.log(5);
 
 window.onscroll = function(e){ // una funcion que se ejecuta mientras das scroll, le ponemos e por que es un evento, cada que demos scroll nos registra este evento, se puede poner e event evt evento ect
-    console.log(e);
+   console.log(e);
 }
 
 //SELECCIONAR ELEMENTOS Y ASOCIARLES UN EVENTO
+
 const btnEnviar = document.querySelector('.boton--primario');// una vez que creas una variable con queryselector tienes a disposicion el metodo addEventListener
 btnEnviar.addEventListener('click', function(evento){// le estamos registrando un evento al boton de enviar, se pone click para accionar el evento cuando se presione el boton, vamos a ejecutar la siguiente funcion
     console.log(evento);
     evento.preventDefault(); // este es para validar formulario, valida que todos los campos esten llenos y es muy importante va en casi todos los formularios.lo que hace es prevenir la accion por default osea enviarla
 
 
-
-
-
     console.log('enviando formulario');
 });
+
+// El evento de submit
+const formulario = document.querySelector('.formulario')
+
+
+
+// Eventos de los inputs y textarea
+
+const datos = { // vamos a validar los datos con este objeto
+    nombre: '',
+    email: '',
+    mensaje: '',
+}
+
+const nombre = document.querySelector('#nombre'); // importante las llaves de los objetos deben coincidir con los inputs (nombre, email y mensaje)
+const email = document.querySelector('#email');
+const mensaje = document.querySelector('#mensaje');
+
+nombre.addEventListener('input', leerTexto) //input nos da una validacion en tiempo real a diferencia de change
+email.addEventListener('input', leerTexto)
+mensaje.addEventListener('input', leerTexto)
+
+
+function leerTexto(e) { //Creamo esta funcion para agrupar todo y no escribir tanto cosigo, e se debe poner automaticamente cuando se agrega el addEventListener
+    console.log(e.target.value)// asi nos lee en consola todo lo que estamos poniendo, .value da el valor de lo que el usuario escriba
+
+    datos[e.target.id] = e.target.value; //de esta manera llenamos la informacion de los objetos de arriba, cuando escribimos en el formulario de la pagina
+
+    console.log(datos);
+}
+
+// Eventos
