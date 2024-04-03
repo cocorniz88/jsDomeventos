@@ -77,9 +77,6 @@ btnEnviar.addEventListener('click', function(evento){// le estamos registrando u
     console.log('enviando formulario');
 });
 
-// El evento de submit
-const formulario = document.querySelector('.formulario')
-
 
 
 // Eventos de los inputs y textarea
@@ -93,18 +90,29 @@ const datos = { // vamos a validar los datos con este objeto
 const nombre = document.querySelector('#nombre'); // importante las llaves de los objetos deben coincidir con los inputs (nombre, email y mensaje)
 const email = document.querySelector('#email');
 const mensaje = document.querySelector('#mensaje');
+const formulario = document.querySelector('.formulario'); // las variables deben ir juntas para leer mejor el codigo
 
-nombre.addEventListener('input', leerTexto) //input nos da una validacion en tiempo real a diferencia de change
-email.addEventListener('input', leerTexto)
-mensaje.addEventListener('input', leerTexto)
+nombre.addEventListener('input', leerTexto); //input nos da una validacion en tiempo real a diferencia de change
+email.addEventListener('input', leerTexto);
+mensaje.addEventListener('input', leerTexto); // despues de las variables deben ir los eventlistener
+
+// Evento submit
+formulario.addEventListener('submit', function(e) { // registramos el evento, submit es el evento, en html el boton siempre tiene que tener subit es el que va a enviar o ejecutar el formulario 
+    e.preventDefault(); // el submit esta asociado al formulario, mientras el click de arriba esta asociado al boton
+});
+
+//Validar el formulario
+
+
+// enviar el formulario
 
 
 function leerTexto(e) { //Creamo esta funcion para agrupar todo y no escribir tanto cosigo, e se debe poner automaticamente cuando se agrega el addEventListener
     console.log(e.target.value)// asi nos lee en consola todo lo que estamos poniendo, .value da el valor de lo que el usuario escriba
-
     datos[e.target.id] = e.target.value; //de esta manera llenamos la informacion de los objetos de arriba, cuando escribimos en el formulario de la pagina
 
     console.log(datos);
 }
 
-// Eventos
+// El evento de submit
+ 
