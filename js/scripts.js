@@ -68,14 +68,14 @@ window.onscroll = function(e){ // una funcion que se ejecuta mientras das scroll
 
 //SELECCIONAR ELEMENTOS Y ASOCIARLES UN EVENTO
 
-const btnEnviar = document.querySelector('.boton--primario');// una vez que creas una variable con queryselector tienes a disposicion el metodo addEventListener
-btnEnviar.addEventListener('click', function(evento){// le estamos registrando un evento al boton de enviar, se pone click para accionar el evento cuando se presione el boton, vamos a ejecutar la siguiente funcion
-    console.log(evento);
-    evento.preventDefault(); // este es para validar formulario, valida que todos los campos esten llenos y es muy importante va en casi todos los formularios.lo que hace es prevenir la accion por default osea enviarla
+//const btnEnviar = document.querySelector('.boton--primario');// una vez que creas una variable con queryselector tienes a disposicion el metodo addEventListener
+//btnEnviar.addEventListener('click', function(evento){// le estamos registrando un evento al boton de enviar, se pone click para accionar el evento cuando se presione el boton, vamos a ejecutar la siguiente funcion
+   // console.log(evento);
+    //evento.preventDefault(); // este es para validar formulario, valida que todos los campos esten llenos y es muy importante va en casi todos los formularios.lo que hace es prevenir la accion por default osea enviarla
 
 
-    console.log('enviando formulario');
-});
+ //   console.log('enviando formulario');
+//});
 
 
 
@@ -99,20 +99,55 @@ mensaje.addEventListener('input', leerTexto); // despues de las variables deben 
 // Evento submit
 formulario.addEventListener('submit', function(e) { // registramos el evento, submit es el evento, en html el boton siempre tiene que tener subit es el que va a enviar o ejecutar el formulario 
     e.preventDefault(); // el submit esta asociado al formulario, mientras el click de arriba esta asociado al boton
+
+
+    //Validar el formulario (cuando el usuario deja en blanco un espacio que es requerido)
+
+    const { nombre, email, mensaje } = datos; //destructuring del objeto datos
+
+    if (nombre === '' || email === '' || mensaje === '') { // decimos si el nombre es un string vacio entonces imprimenos el nombre esta vacio...
+        mostrarError('Todos los campos son obligatios') //estamos creando una funcion la cual se crea abajo 
+
+        return; // corta la ejecucion del codigo para que no se imprima el console.log de abajo
+    }
+
+    //Crear la otra alerta de enviar correctamente
+    mostrarMensaje('Mensaje enviado correctamente');
 });
 
-//Validar el formulario
-
-
-// enviar el formulario
-
-
 function leerTexto(e) { //Creamo esta funcion para agrupar todo y no escribir tanto cosigo, e se debe poner automaticamente cuando se agrega el addEventListener
-    console.log(e.target.value)// asi nos lee en consola todo lo que estamos poniendo, .value da el valor de lo que el usuario escriba
+    //console.log(e.target.value)// asi nos lee en consola todo lo que estamos poniendo, .value da el valor de lo que el usuario escriba
     datos[e.target.id] = e.target.value; //de esta manera llenamos la informacion de los objetos de arriba, cuando escribimos en el formulario de la pagina
 
-    console.log(datos);
+    //console.log(datos);
 }
 
-// El evento de submit
+// Muestra una alerta que se envio correctamente
+
+function mostrarMensaje(mensaje){
+    const alerta = document.createElement('P');
+    alerta.textContent = mensaje;
+    alerta.classList.add('correcto');
+
+    formulario.appendChild( alerta );
+
+    //Desaparezca despues de 4 segundos
+    setTimeout(() => {
+        alerta.remove();
+    }, 4000);
+}
+
+//Muestra un error en pantalla 
+function mostrarError(mensaje) {
+    const error = document.createElement('P'); //estamos creando un parrafo, que va a mostrar el mensaje y se le agrega una clase para darle estilo en css
+    error.textContent = mensaje;
+    error.classList.add('error');
+
+    formulario.appendChild( error ); // esto es para que lo agregue al formulario de html
+
+    //Desaparezca el mensaje despues de 4 segundos
+    setTimeout(() => {
+        error.remove(); //el error debe desaparecer .remove es un metodo para poder eliminar un elemento html
+    }, 4000);
+}
  
