@@ -1,4 +1,4 @@
-// para seleccionara contenido hay 3 formas: 
+// para seleccionara contenido hay 3 formas:
 
 //queryselector: te retorna ninguno o hasta un slo selector que estes escribiendo que seria el primero que encuentres, son similiares a CSS
 //vamos a seleccionar el texto de h2 de contacto.html
